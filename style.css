@@ -1,161 +1,247 @@
+/* ===== Pac-Man thema ===== */
 :root {
-    --peach: #DC9E82;
-    --sage:  #B9D2B1;
-    --plum:  #60435F;
-    --blue:  #6B9AC4;
-    --pink:  #E9BCB7;
-    --cream: #FBF7F4;
+    --bg:     #0d0d16;   /* maze-zwart */
+    --maze:   #2121DE;   /* Pac-Man doolhof-blauw */
+    --pac:    #FFE600;   /* Pac-Man geel */
+    --blinky: #FF2D2D;   /* rode ghost */
+    --pinky:  #FFB8FF;   /* roze ghost */
+    --inky:   #29E0E0;   /* cyaan ghost */
+    --clyde:  #FFB852;   /* oranje ghost */
+    --pellet: #FFF6E9;   /* tekst / pellets */
+    --dim:    #9aa0c0;   /* gedempte tekst */
 }
 
+* { box-sizing: border-box; }
+
 body {
-    background: var(--cream);
-    color: #2b2b2b;
-    font-family: system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
+    background: var(--bg);
+    color: var(--pellet);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
 }
-
 main { flex: 1; }
 
-h1, h2, h3, h4 {
-    color: var(--plum);
-    font-weight: 700;
+h1, h2, h3 {
+    font-family: "Press Start 2P", monospace;
+    color: var(--pac);
+    line-height: 1.4;
 }
+h4 { color: var(--pac); font-weight: 700; }
 
-a { color: var(--blue); }
-a:hover { color: var(--plum); }
+a { color: var(--inky); text-decoration: none; }
+a:hover { color: var(--pac); }
 
-/* ===== Navbar ===== */
+/* ===== Navbar = doolhofbalk ===== */
 .navbar {
-    background: var(--plum) !important;
-    padding: .8rem 0;
-}
-.navbar-brand,
-.navbar .nav-link {
-    color: var(--cream) !important;
+    background: var(--bg) !important;
+    border-bottom: 4px solid var(--maze);
+    padding: .9rem 0;
 }
 .navbar-brand {
-    font-weight: 700;
+    font-family: "Press Start 2P", monospace;
+    font-size: .95rem;
+    color: var(--pac) !important;
+}
+.navbar .nav-link {
+    font-family: "Press Start 2P", monospace;
+    font-size: .62rem;
+    color: var(--pellet) !important;
+    padding: .5rem .8rem;
     letter-spacing: .5px;
 }
-.navbar .nav-link:hover {
-    color: var(--peach) !important;
-}
+.navbar .nav-link:hover { color: var(--inky) !important; }
 .navbar .nav-link.active {
-    color: var(--peach) !important;
-    font-weight: 600;
+    color: var(--pac) !important;
 }
-.navbar-toggler { border-color: var(--cream); }
-.navbar-toggler-icon { filter: invert(1); }
-
-/* ===== Page header (kleine banner bovenaan elke pagina) ===== */
-.page-header {
-    background: linear-gradient(135deg, var(--peach), var(--pink));
-    color: var(--plum);
-    padding: 3rem 0;
+.navbar .nav-link.active::before {
+    content: "● ";
+    color: var(--pac);
+    font-size: .6rem;
 }
-.page-header h1 { font-size: 2.5rem; margin: 0; }
-.page-header p { margin: .3rem 0 0; opacity: .85; }
+.navbar-toggler {
+    border: 2px solid var(--pac);
+    padding: .25rem .5rem;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23FFE600' stroke-width='2.5' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 
-/* ===== Hero (alleen homepage) ===== */
+/* ===== Hero ===== */
 .hero {
-    background: linear-gradient(135deg, var(--peach), var(--pink));
-    color: var(--plum);
-    padding: 6rem 0;
+    padding: 5.5rem 0 5rem;
+    position: relative;
+    overflow: hidden;
 }
-.hero h1 { font-size: 3.2rem; margin-bottom: .5rem; }
-.hero .tagline { font-size: 1.3rem; opacity: .85; }
-.hero-contact { margin-top: 1.5rem; font-size: .95rem; }
-.hero-contact span { margin-right: 1.5rem; display: inline-block; }
-.btn-plum {
-    background: var(--plum);
-    color: var(--cream);
-    border: none;
-    padding: .6rem 1.6rem;
-    border-radius: .4rem;
-    font-weight: 500;
-    margin-top: 1.5rem;
+.hero h1 {
+    font-size: clamp(1.5rem, 5vw, 2.6rem);
+    margin-bottom: 1.2rem;
+    text-shadow: 3px 3px 0 var(--maze);
 }
-.btn-plum:hover { background: var(--blue); color: var(--cream); }
+.hero .tagline {
+    font-family: "Press Start 2P", monospace;
+    font-size: .7rem;
+    color: var(--inky);
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
 
-/* ===== Content sections ===== */
+/* Pac-Man eet pellets (signature) */
+.chase {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    margin: 2.5rem 0 1rem;
+    height: 38px;
+}
+.pacman {
+    width: 38px; height: 38px;
+    background: var(--pac);
+    border-radius: 50%;
+    clip-path: polygon(100% 25%, 44% 50%, 100% 75%, 100% 100%, 0 100%, 0 0, 100% 0);
+    animation: chomp .35s linear infinite;
+    flex: 0 0 auto;
+}
+.pellet-dot {
+    width: 11px; height: 11px;
+    background: var(--pellet);
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+@keyframes chomp {
+    0%, 100% { clip-path: polygon(100% 25%, 44% 50%, 100% 75%, 100% 100%, 0 100%, 0 0, 100% 0); }
+    50%      { clip-path: polygon(100% 50%, 44% 50%, 100% 50%, 100% 100%, 0 100%, 0 0, 100% 0); }
+}
+
+.btn-pac {
+    background: var(--pac);
+    color: var(--bg);
+    font-family: "Press Start 2P", monospace;
+    font-size: .65rem;
+    border: none;
+    padding: .9rem 1.4rem;
+    border-radius: 4px;
+    letter-spacing: .5px;
+}
+.btn-pac:hover { background: var(--inky); color: var(--bg); }
+
+/* ===== Page header (subpagina's) ===== */
+.page-header {
+    border-bottom: 4px solid var(--maze);
+    padding: 3rem 0 2.5rem;
+}
+.page-header h1 {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+    margin: 0;
+    text-shadow: 3px 3px 0 var(--maze);
+}
+
+/* ===== Content ===== */
 .content { padding: 3.5rem 0; }
 .section-title {
-    border-bottom: 3px solid var(--peach);
-    padding-bottom: .4rem;
+    font-size: 1rem;
+    border-bottom: 3px solid var(--pac);
+    padding-bottom: .5rem;
     margin-bottom: 2rem;
     display: inline-block;
 }
 
-/* Skills */
+/* Skills = pellets */
 .skill-tag {
     display: inline-block;
-    background: var(--sage);
-    color: var(--plum);
-    padding: .4rem .9rem;
+    background: transparent;
+    color: var(--pellet);
+    border: 2px solid var(--maze);
+    padding: .45rem 1rem;
     border-radius: 2rem;
-    margin: .25rem;
+    margin: .3rem;
     font-size: .9rem;
-    font-weight: 500;
 }
-.skill-tag.soft { background: var(--plum); color: var(--cream); }
+.skill-tag.soft {
+    border-color: var(--pinky);
+    color: var(--pinky);
+}
 
 /* Timeline */
 .timeline-item {
-    border-left: 3px solid var(--blue);
-    padding: 0 0 1.5rem 1.2rem;
+    border-left: 3px solid var(--maze);
+    padding: 0 0 1.6rem 1.3rem;
     margin-left: .5rem;
     position: relative;
 }
 .timeline-item::before {
     content: "";
     position: absolute;
-    left: -8px; top: 4px;
-    width: 13px; height: 13px;
-    background: var(--blue);
+    left: -9px; top: 5px;
+    width: 14px; height: 14px;
+    background: var(--pac);
     border-radius: 50%;
 }
 .timeline-item .year {
-    color: var(--peach);
-    font-weight: 700;
-    font-size: .9rem;
+    font-family: "Press Start 2P", monospace;
+    color: var(--inky);
+    font-size: .6rem;
     letter-spacing: .5px;
 }
-.timeline-item h4 { margin: .2rem 0 .1rem; font-size: 1.1rem; }
-.timeline-item .place { color: #666; font-style: italic; margin-bottom: .4rem; }
+.timeline-item h4 { margin: .5rem 0 .1rem; font-size: 1.1rem; }
+.timeline-item .place { color: var(--dim); font-style: italic; margin-bottom: .4rem; }
 
-/* Project cards */
+/* Project cards = ghosts */
 .project-card {
-    background: white;
-    border-top: 5px solid var(--plum);
+    background: #14142099;
+    border: 2px solid var(--maze);
+    border-top-width: 6px;
     padding: 1.5rem;
-    border-radius: .5rem;
+    border-radius: 6px;
     height: 100%;
-    transition: transform .2s;
 }
-.project-card:hover { transform: translateY(-4px); }
-.project-card h3 { color: var(--plum); font-size: 1.2rem; margin-bottom: .3rem; }
-.project-card .stack { color: var(--blue); font-size: .85rem; font-weight: 600; margin-bottom: .8rem; }
+.project-card.ghost-red    { border-top-color: var(--blinky); }
+.project-card.ghost-pink   { border-top-color: var(--pinky); }
+.project-card.ghost-cyan   { border-top-color: var(--inky); }
+.project-card h3 { font-size: .85rem; margin-bottom: .6rem; }
+.project-card .stack {
+    font-family: "Press Start 2P", monospace;
+    color: var(--inky);
+    font-size: .55rem;
+    margin-bottom: .9rem;
+    line-height: 1.6;
+}
+.project-card .repo {
+    display: inline-block;
+    margin-top: .8rem;
+    font-family: "Press Start 2P", monospace;
+    font-size: .55rem;
+    color: var(--pac);
+    border: 2px solid var(--pac);
+    padding: .45rem .7rem;
+    border-radius: 4px;
+}
+.project-card .repo:hover { background: var(--pac); color: var(--bg); }
 
 /* Contact */
 .contact-box {
-    background: var(--plum);
-    color: var(--cream);
+    border: 3px solid var(--maze);
     padding: 2.5rem;
-    border-radius: 1rem;
+    border-radius: 8px;
+    background: #14142066;
 }
-.contact-box h2 { color: var(--cream); }
-.contact-box a { color: var(--peach); }
-.contact-box a:hover { color: var(--pink); }
+.contact-box a { color: var(--pac); }
+.contact-box a:hover { color: var(--inky); }
 
-/* Footer */
 footer {
-    background: var(--plum);
-    color: var(--cream);
+    border-top: 4px solid var(--maze);
     text-align: center;
-    padding: 1.2rem;
-    opacity: .9;
-    font-size: .85rem;
+    padding: 1.3rem;
+    color: var(--dim);
+    font-family: "Press Start 2P", monospace;
+    font-size: .55rem;
+    letter-spacing: .5px;
+}
+
+/* Toegankelijkheid: animatie uit bij voorkeur */
+@media (prefers-reduced-motion: reduce) {
+    .pacman { animation: none; }
 }
