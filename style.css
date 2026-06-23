@@ -275,3 +275,62 @@ footer {
     font-size: .82rem;
     color: var(--pellet);
 }
+
+/* ===== Profielfoto op home ===== */
+.profile-photo {
+    width: 100%;
+    max-width: 260px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--pac);
+    box-shadow: 0 0 0 6px var(--maze);
+}
+.hero .intro-text {
+    font-size: 1rem;
+    color: var(--pellet);
+    max-width: 30rem;
+    margin-bottom: 1.6rem;
+}
+
+/* ===== Contactformulier ===== */
+.form-label {
+    color: var(--pellet);
+    font-size: .9rem;
+    margin-bottom: .3rem;
+}
+.contact-box .form-control {
+    background: #0d0d16;
+    border: 2px solid var(--maze);
+    color: var(--pellet);
+    border-radius: 5px;
+}
+.contact-box .form-control::placeholder { color: #8a8fb0; }
+.contact-box .form-control:focus {
+    background: #0d0d16;
+    border-color: var(--pac);
+    color: var(--pellet);
+    box-shadow: 0 0 0 .2rem rgba(255, 230, 0, .25);
+}
+
+/* ===== LinkedIn knop ===== */
+.contact-divider {
+    margin: 1.4rem 0 1rem;
+    color: var(--dim);
+    font-size: .85rem;
+}
+.btn-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    background: #0A66C2;
+    color: #fff;
+    font-family: "Press Start 2P", monospace;
+    font-size: .6rem;
+    line-height: 1.4;
+    padding: .75rem 1.1rem;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.btn-linkedin:hover { background: #094f96; color: #fff; }
+.btn-linkedin i { font-size: 1.15rem; }

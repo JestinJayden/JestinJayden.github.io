@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -33,15 +34,31 @@
         <section class="content">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-lg-6">
                         <div class="contact-box">
-                            <h2 class="mb-3" style="font-size:.9rem;">Neem contact op</h2>
-                            <p>Heb je een vraag of wil je samenwerken? Stuur gerust een bericht.</p>
-                            <p class="mt-4 mb-0">
-                                E-mail: <a href="mailto:jahlanijja@gmail.com">jahlanijja@gmail.com</a><br>
-                                Telefoon: <a href="tel:+31629856006">+31 6 29856006</a><br>
-                                Locatie: Spijkenisse
-                            </p>
+                            <h2 class="mb-3" style="font-size:.9rem;">Stuur mij een bericht</h2>
+                            <p class="mb-4">Vul je gegevens in en ik neem zo snel mogelijk contact met je op.</p>
+
+                            <form action="https://formspree.io/f/JOUW_FORM_ID" method="POST">
+                                <div class="mb-3">
+                                    <label class="form-label" for="naam">Naam</label>
+                                    <input type="text" class="form-control" id="naam" name="naam" placeholder="Je naam" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="email">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="jouw@email.nl" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="bericht">Bericht</label>
+                                    <textarea class="form-control" id="bericht" name="bericht" rows="5" placeholder="Waar gaat het over?" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-pac">Verstuur bericht</button>
+                            </form>
+
+                            <p class="contact-divider">Of bekijk mijn profiel:</p>
+                            <a href="https://www.linkedin.com/in/JOUW-PROFIEL" target="_blank" rel="noopener" class="btn-linkedin">
+                                <i class="bi bi-linkedin"></i> LinkedIn
+                            </a>
                         </div>
                     </div>
                 </div>
